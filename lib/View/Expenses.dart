@@ -2,14 +2,14 @@ import 'package:expensetracker/Widget/Expenses_list.dart';
 import 'package:expensetracker/models/expense.dart';
 import 'package:flutter/material.dart';
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class App extends StatefulWidget {
+  const App({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<App> createState() => _AppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _AppState extends State<App> {
   final List<Expense> registeredExpense = [
     Expense(
       title: "Flutter",
@@ -24,22 +24,43 @@ class _MyAppState extends State<MyApp> {
       category: Category.food,
     )
   ];
+
+  void _showModel() {}
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: SafeArea(
-          child: Column(
-            children: [
-              const Text("Chart"),
-              Expanded(
-                child: ExpensesList(
-                  expensesList: registeredExpense,
-                ),
-              ),
-            ],
+    return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (BuildContext ctx) {
+                  return Text("BottomSheet");
+                },
+              );
+            },
+            icon: const Icon(Icons.add),
+          )
+        ],
+        title: const Text(
+          "Flutter Expense Tracker",
+          style: TextStyle(
+            fontSize: 18,
           ),
         ),
+        backgroundColor: Colors.blue,
+      ),
+      body: Column(
+        children: [
+          const Text("Chart"),
+          Expanded(
+            child: ExpensesList(
+              expensesList: registeredExpense,
+            ),
+          ),
+        ],
       ),
     );
   }
