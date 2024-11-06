@@ -10,13 +10,16 @@ class NewExpense extends StatefulWidget {
 class _NewExpenseState extends State<NewExpense> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: Row(
+    return const Padding(
+      padding: EdgeInsets.all(20),
+      child: Column(
         children: [
-          TextFormField(
-            decoration: const InputDecoration(hintText: 'Title'),
-          )
+          TextField(
+            maxLength: 50,
+            decoration: InputDecoration(
+              label: Text('Title'),
+            ),
+          ),
         ],
       ),
     );
