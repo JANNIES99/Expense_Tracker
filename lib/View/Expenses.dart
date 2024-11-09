@@ -26,8 +26,6 @@ class _AppState extends State<App> {
     )
   ];
 
-  void _showModel() {}
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

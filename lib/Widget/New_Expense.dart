@@ -13,6 +13,7 @@ class _NewExpenseState extends State<NewExpense> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
   DateTime? _selectedData;
+  Category? _selectedCategory;
 
   void _openDatePicker() async {
     final now = DateTime.now();
@@ -56,7 +57,7 @@ class _NewExpenseState extends State<NewExpense> {
                   keyboardType: TextInputType.number,
                   controller: _amountController,
                   decoration: const InputDecoration(
-                      label: Text("Amount"), prefixText: "\$"),
+                      label: Text("Amount"), prefixText: "\$ "),
                 ),
               ),
               const SizedBox(
@@ -79,6 +80,20 @@ class _NewExpenseState extends State<NewExpense> {
           ),
           Row(
             children: [
+              DropdownButton(
+                  items: Category.values
+                      .map(
+                        (item) => DropdownMenuItem(
+                          value: item,
+                          child: Text(
+                            item.name.toUpperCase(),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (value) {
+                    print(value!.name);
+                  }),
               const Spacer(),
               TextButton(
                 onPressed: () {
