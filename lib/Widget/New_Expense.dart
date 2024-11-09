@@ -1,10 +1,13 @@
+import 'dart:developer';
+
 import 'package:expensetracker/models/expense.dart';
+import 'package:expensetracker/View/Expenses.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter/services.dart';
 
 class NewExpense extends StatefulWidget {
-  const NewExpense({super.key});
-
+  const NewExpense({required this.addExpense, super.key});
+  final void Function(Expense expense) addExpense;
   @override
   State<NewExpense> createState() => _NewExpenseState();
 }
@@ -13,7 +16,7 @@ class _NewExpenseState extends State<NewExpense> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
   DateTime? _selectedData;
-  Category? _selectedCategory;
+  Category _selectedCategory = Category.leisure;
 
   void _openDatePicker() async {
     final now = DateTime.now();
@@ -29,6 +32,39 @@ class _NewExpenseState extends State<NewExpense> {
         _selectedData = pickedDate;
       },
     );
+  }
+
+  void _ckeckData() {
+    final amount = double.tryParse(_amountController.text.trim());
+    final title = _titleController.text.trim();
+    if (title.isEmpty ||
+        amount == null ||
+        amount == 0 ||
+        _selectedData == null) {
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: const Text("Invalid Input"),
+                content: const Text(
+                    "Plase make sure you have valid title, amount, date and category that was entered"),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text("Okay"),
+                  )
+                ],
+              ));
+      return;
+    }
+    Expense exp = Expense(
+        title: title,
+        amount: amount,
+        date: _selectedData!,
+        category: _selectedCategory);
+    widget.addExpense(exp);
+    Navigator.pop(context);
   }
 
   @override
@@ -78,22 +114,35 @@ class _NewExpenseState extends State<NewExpense> {
               )
             ],
           ),
+          const SizedBox(
+            height: 10,
+          ),
           Row(
             children: [
               DropdownButton(
-                  items: Category.values
-                      .map(
-                        (item) => DropdownMenuItem(
-                          value: item,
-                          child: Text(
-                            item.name.toUpperCase(),
-                          ),
+                value: _selectedCategory,
+                items: Category.values
+                    .map(
+                      (item) => DropdownMenuItem(
+                        value: item,
+                        child: Text(
+                          item.name.toUpperCase(),
                         ),
-                      )
-                      .toList(),
-                  onChanged: (value) {
-                    print(value!.name);
-                  }),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) {
+                  if (value == null) {
+                    return;
+                  }
+                  setState(
+                    () {
+                      _selectedCategory = value;
+                      print(_selectedCategory);
+                    },
+                  );
+                },
+              ),
               const Spacer(),
               TextButton(
                 onPressed: () {
@@ -102,10 +151,7 @@ class _NewExpenseState extends State<NewExpense> {
                 child: const Text('Cancel'),
               ),
               ElevatedButton(
-                onPressed: () {
-                  print(_titleController.text);
-                  print(_amountController.text);
-                },
+                onPressed: _ckeckData,
                 child: const Text('Save'),
               ),
             ],

@@ -26,6 +26,12 @@ class _AppState extends State<App> {
     )
   ];
 
+  void addExpense(Expense exp) {
+    setState(() {
+      registeredExpense.add(exp);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,9 +40,13 @@ class _AppState extends State<App> {
           IconButton(
             onPressed: () {
               showModalBottomSheet(
+                useSafeArea: true,
+                isScrollControlled: true,
                 context: context,
                 builder: (BuildContext ctx) {
-                  return const NewExpense();
+                  return NewExpense(
+                    addExpense: addExpense,
+                  );
                 },
               );
             },
