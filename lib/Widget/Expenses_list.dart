@@ -12,7 +12,9 @@ class ExpensesList extends StatelessWidget {
     return ListView.builder(
       itemCount: expensesList.length,
       itemBuilder: (ctx, index) {
-        return ExpenseItem(expense: expensesList[index]);
+        return Dismissible(
+            key: ValueKey(expensesList[index]),
+            child: ExpenseItem(expense: expensesList[index]));
       },
     );
   }
