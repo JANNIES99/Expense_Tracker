@@ -10,9 +10,9 @@ class ExpensesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(expensesList[1].title);
+    int leng = expensesList.length;
     return ListView.builder(
-      itemCount: expensesList.length,
+      itemCount: leng,
       itemBuilder: (ctx, index) {
         return Dismissible(
             onDismissed: (direction) {

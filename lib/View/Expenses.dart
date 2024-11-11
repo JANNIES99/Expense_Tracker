@@ -23,7 +23,7 @@ class _AppState extends State<App> {
       amount: 9.99,
       date: DateTime.now(),
       category: Category.food,
-    )
+    ),
   ];
 
   void addExpense(Expense exp) {
@@ -43,7 +43,7 @@ class _AppState extends State<App> {
     Widget mainContent = const Center(
       child: Text("No Expense found  Start adding some"),
     );
-    if (registeredExpense.isEmpty) {
+    if (registeredExpense.isNotEmpty) {
       mainContent = ExpensesList(
         expensesList: registeredExpense,
         removeExpense: removeExpense,
