@@ -13,15 +13,18 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final ColorScheme _scheme = ColorScheme.dark();
+  final ColorScheme _scheme =
+      ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 0, 0, 0));
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData().copyWith(
-            colorScheme: _scheme,
-            appBarTheme: AppBarTheme().copyWith(
-              backgroundColor: Colors.blue[800],
-            )),
-        home: App());
+      theme: ThemeData().copyWith(
+        colorScheme: _scheme,
+        appBarTheme: const AppBarTheme().copyWith(
+          backgroundColor: Colors.blue[800],
+        ),
+      ),
+      home: const App(),
+    );
   }
 }
