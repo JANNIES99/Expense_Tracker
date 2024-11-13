@@ -33,9 +33,27 @@ class _AppState extends State<App> {
   }
 
   void removeExpense(Expense exp) {
-    setState(() {
-      registeredExpense.remove(exp);
-    });
+    final eIndex = registeredExpense.indexOf(exp);
+    setState(
+      () {
+        registeredExpense.remove(exp);
+      },
+    );
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 3),
+        content: const Text("Expense is deleted"),
+        action: SnackBarAction(
+          label: "Undo",
+          onPressed: () {
+            setState(() {
+              registeredExpense.insert(eIndex, exp);
+            });
+          },
+        ),
+      ),
+    );
   }
 
   @override
