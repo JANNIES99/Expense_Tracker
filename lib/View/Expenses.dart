@@ -92,7 +92,6 @@ class _AppState extends State<App> {
             fontSize: 18,
           ),
         ),
-        backgroundColor: Colors.blue,
       ),
       body: Column(
         children: [
