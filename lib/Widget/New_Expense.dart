@@ -40,7 +40,10 @@ class _NewExpenseState extends State<NewExpense> {
       showDialog(
           context: context,
           builder: (context) => AlertDialog(
-                title: const Text("Invalid Input"),
+                title: Text(
+                  "Invalid Input",
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
                 content: const Text(
                     "Plase make sure you have valid title, amount, date and category that was entered"),
                 actions: [
@@ -123,6 +126,7 @@ class _NewExpenseState extends State<NewExpense> {
                         value: item,
                         child: Text(
                           item.name.toUpperCase(),
+                          style: Theme.of(context).textTheme.titleSmall,
                         ),
                       ),
                     )
@@ -134,7 +138,6 @@ class _NewExpenseState extends State<NewExpense> {
                   setState(
                     () {
                       _selectedCategory = value;
-                      print(_selectedCategory);
                     },
                   );
                 },
