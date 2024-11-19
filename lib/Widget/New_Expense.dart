@@ -42,7 +42,10 @@ class _NewExpenseState extends State<NewExpense> {
           builder: (context) => AlertDialog(
                 title: Text(
                   "Invalid Input",
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 18),
                 ),
                 content: const Text(
                     "Plase make sure you have valid title, amount, date and category that was entered"),
@@ -114,7 +117,7 @@ class _NewExpenseState extends State<NewExpense> {
             ],
           ),
           const SizedBox(
-            height: 10,
+            height: 15,
           ),
           Row(
             children: [
@@ -126,7 +129,7 @@ class _NewExpenseState extends State<NewExpense> {
                         value: item,
                         child: Text(
                           item.name.toUpperCase(),
-                          style: Theme.of(context).textTheme.titleSmall,
+                          style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ),
                     )

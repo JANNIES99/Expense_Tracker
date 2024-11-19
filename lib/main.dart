@@ -15,8 +15,10 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final ColorScheme _scheme =
       ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 36, 59, 233));
-  final ColorScheme _darkscheme =
-      ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 38, 0, 255));
+  final ColorScheme _darkscheme = ColorScheme.fromSeed(
+    brightness: Brightness.dark,
+    seedColor: const Color.fromARGB(255, 31, 2, 253),
+  );
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,7 +34,7 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
         cardTheme: const CardTheme().copyWith(
-          color: _darkscheme.secondaryContainer,
+          color: _darkscheme.onSecondaryContainer,
           margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
@@ -54,7 +56,7 @@ class _MyAppState extends State<MyApp> {
           bodyMedium: const TextStyle(
             fontWeight: FontWeight.normal,
             fontSize: 14,
-            color: Colors.black,
+            color: Colors.white,
           ),
         ),
       ),
