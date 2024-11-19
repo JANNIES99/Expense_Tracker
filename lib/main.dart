@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
         ),
         cardTheme: const CardTheme().copyWith(
           color: _scheme.secondaryContainer,
-          margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 7),
+          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
