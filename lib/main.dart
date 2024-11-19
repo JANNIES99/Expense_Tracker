@@ -14,14 +14,19 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final ColorScheme _scheme =
-      ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 0, 0, 0));
+      ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 15, 131, 214));
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData().copyWith(
         colorScheme: _scheme,
         appBarTheme: const AppBarTheme().copyWith(
-          backgroundColor: Colors.blue[800],
+          backgroundColor: _scheme.onPrimaryContainer,
+          foregroundColor: _scheme.primaryContainer,
+        ),
+        cardTheme: const CardTheme().copyWith(
+          color: _scheme.secondaryContainer,
+          margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 7),
         ),
       ),
       home: const App(),
