@@ -14,10 +14,50 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final ColorScheme _scheme =
-      ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 15, 131, 214));
+      ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 36, 59, 233));
+  final ColorScheme _darkscheme =
+      ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 38, 0, 255));
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      darkTheme: ThemeData.dark().copyWith(
+        colorScheme: _darkscheme,
+        appBarTheme: const AppBarTheme().copyWith(
+          backgroundColor: _darkscheme.onPrimaryContainer,
+          foregroundColor: _darkscheme.primaryContainer,
+          titleTextStyle: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            color: _darkscheme.secondaryContainer,
+          ),
+        ),
+        cardTheme: const CardTheme().copyWith(
+          color: _darkscheme.secondaryContainer,
+          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: _darkscheme.primaryContainer,
+          ),
+        ),
+        textTheme: const TextTheme().copyWith(
+          titleLarge: const TextStyle(
+            fontWeight: FontWeight.normal,
+            fontSize: 16,
+            color: Colors.black,
+          ),
+          titleSmall: const TextStyle(
+            fontWeight: FontWeight.normal,
+            fontSize: 12,
+            color: Colors.black,
+          ),
+          bodyMedium: const TextStyle(
+            fontWeight: FontWeight.normal,
+            fontSize: 14,
+            color: Colors.black,
+          ),
+        ),
+      ),
       theme: ThemeData().copyWith(
         colorScheme: _scheme,
         appBarTheme: const AppBarTheme().copyWith(
@@ -56,6 +96,7 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
       ),
+      themeMode: ThemeMode.system,
       home: const App(),
     );
   }
