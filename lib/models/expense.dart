@@ -32,3 +32,23 @@ class Expense {
     return formatter.format(date);
   }
 }
+
+class ExpensesBuilder {
+  ExpensesBuilder({required this.category, required this.expenses});
+
+  ExpensesBuilder.forCategorry(
+      {required this.category, required List<Expense> allExpenses})
+      : expenses = allExpenses
+            .where((expense) => expense.category == category)
+            .toList();
+  final Category category;
+  final List<Expense> expenses;
+
+  double get totalExpense {
+    double sum = 0;
+    for (final expense in expenses) {
+      sum += expense.amount;
+    }
+    return sum;
+  }
+}
