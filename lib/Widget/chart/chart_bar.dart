@@ -7,15 +7,17 @@ class ChartBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 4),
-        height: 70,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 16),
         child: FractionallySizedBox(
           heightFactor: fill,
           child: DecoratedBox(
             decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.onSecondary,
-                shape: BoxShape.rectangle),
+              color: Theme.of(context).colorScheme.onSecondary,
+              shape: BoxShape.rectangle,
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(10)),
+            ),
           ),
         ),
       ),
