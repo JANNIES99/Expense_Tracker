@@ -41,7 +41,7 @@ class Chart extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(
-            height: 15,
+            height: 10,
           ),
           Expanded(
             child: Row(
@@ -53,9 +53,6 @@ class Chart extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(
-            height: 5,
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -64,6 +61,9 @@ class Chart extends StatelessWidget {
               Icon(categoryIcon[Category.travel]),
               Icon(categoryIcon[Category.work]),
             ],
+          ),
+          const SizedBox(
+            height: 5,
           ),
         ],
       ),
