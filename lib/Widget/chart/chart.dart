@@ -1,3 +1,4 @@
+import 'package:expensetracker/Widget/chart/chart_bar.dart';
 import 'package:expensetracker/models/expense.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +38,19 @@ class Chart extends StatelessWidget {
       margin: Theme.of(context).cardTheme.margin,
       child: Column(
         children: [
-          const SizedBox(height: 50),
+          const SizedBox(
+            height: 10,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              for (final build in exBuild)
+                ChartBar(fill: build.totalExpense / maxTotalAmount),
+            ],
+          ),
+          const SizedBox(
+            height: 5,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
