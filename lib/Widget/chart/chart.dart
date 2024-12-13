@@ -58,19 +58,19 @@ class Chart extends StatelessWidget {
             children: [
               Icon(
                 categoryIcon[Category.leisure],
-                color: Theme.of(context).primaryColor,
+                color: Colors.black,
               ),
               Icon(
                 categoryIcon[Category.food],
-                color: Theme.of(context).primaryColor,
+                color: Colors.black,
               ),
               Icon(
                 categoryIcon[Category.travel],
-                color: Theme.of(context).primaryColor,
+                color: Colors.black,
               ),
               Icon(
                 categoryIcon[Category.work],
-                color: Theme.of(context).primaryColor,
+                color: Colors.black,
               ),
             ],
           ),
