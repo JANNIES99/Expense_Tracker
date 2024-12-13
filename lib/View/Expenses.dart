@@ -81,20 +81,6 @@ class _AppState extends State<App> {
         children: [
           Chart(expenses: registeredExpense),
           Expanded(child: mainContent),
-          FloatingActionButton(
-            onPressed: () {
-              showModalBottomSheet(
-                useSafeArea: true,
-                isScrollControlled: true,
-                context: context,
-                builder: (BuildContext ctx) {
-                  return NewExpense(
-                    addExpense: addExpense,
-                  );
-                },
-              );
-            },
-          )
         ],
       ),
     );
