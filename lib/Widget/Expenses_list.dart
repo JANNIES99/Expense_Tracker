@@ -24,7 +24,10 @@ class ExpensesList extends StatelessWidget {
               ),
               child: const Padding(
                 padding: EdgeInsets.only(right: 20),
-                child: Icon(Icons.delete),
+                child: Icon(
+                  Icons.delete,
+                  size: 30,
+                ),
               ),
             ),
             onDismissed: (direction) {
