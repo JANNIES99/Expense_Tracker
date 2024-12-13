@@ -16,10 +16,15 @@ class ExpensesList extends StatelessWidget {
       itemBuilder: (ctx, index) {
         return Dismissible(
             background: Container(
+              alignment: Alignment.centerRight,
               margin: Theme.of(context).cardTheme.margin,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: Theme.of(context).colorScheme.error,
+              ),
+              child: const Padding(
+                padding: EdgeInsets.only(right: 20),
+                child: Icon(Icons.delete),
               ),
             ),
             onDismissed: (direction) {
