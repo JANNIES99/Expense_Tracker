@@ -25,7 +25,13 @@ class ExpenseItem extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
                 const Spacer(),
-                Icon(categoryIcon[expense.category]),
+                Icon(
+                  categoryIcon[expense.category],
+                  color: Colors.black,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
                 Text(
                   expense.formattedDate,
                   style: Theme.of(context).textTheme.titleSmall,
