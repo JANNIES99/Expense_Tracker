@@ -31,7 +31,7 @@ class Chart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 180,
+      height: 200,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
@@ -48,10 +48,24 @@ class Chart extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                for (final build in exBuild)
-                  ChartBar(fill: build.totalExpense / maxTotalAmount),
+                if (maxTotalAmount > 0)
+                  for (final build in exBuild)
+                    ChartBar(fill: build.totalExpense / maxTotalAmount),
               ],
             ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              for (final build in exBuild)
+                Text(
+                  build.totalExpense.toString(),
+                  style: const TextStyle(color: Colors.black),
+                ),
+            ],
+          ),
+          const SizedBox(
+            height: 5,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
