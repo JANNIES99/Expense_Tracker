@@ -56,10 +56,22 @@ class Chart extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Icon(categoryIcon[Category.leisure]),
-              Icon(categoryIcon[Category.food]),
-              Icon(categoryIcon[Category.travel]),
-              Icon(categoryIcon[Category.work]),
+              Icon(
+                categoryIcon[Category.leisure],
+                color: Theme.of(context).primaryColor,
+              ),
+              Icon(
+                categoryIcon[Category.food],
+                color: Theme.of(context).primaryColor,
+              ),
+              Icon(
+                categoryIcon[Category.travel],
+                color: Theme.of(context).primaryColor,
+              ),
+              Icon(
+                categoryIcon[Category.work],
+                color: Theme.of(context).primaryColor,
+              ),
             ],
           ),
           const SizedBox(
