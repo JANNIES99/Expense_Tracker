@@ -83,6 +83,22 @@ class _AppState extends State<App> {
           Expanded(child: mainContent),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet(
+            useSafeArea: true,
+            isScrollControlled: true,
+            context: context,
+            builder: (BuildContext ctx) {
+              return NewExpense(
+                addExpense: addExpense,
+              );
+            },
+          );
+        },
+        shape: const CircleBorder(),
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
