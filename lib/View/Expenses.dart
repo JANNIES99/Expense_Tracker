@@ -70,8 +70,18 @@ class _AppState extends State<App> {
     }
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          IconButton(
+        title: const Text(
+          "Flutter Expense Tracker",
+          style: TextStyle(
+            fontSize: 18,
+          ),
+        ),
+      ),
+      body: Column(
+        children: [
+          Chart(expenses: registeredExpense),
+          Expanded(child: mainContent),
+          FloatingActionButton(
             onPressed: () {
               showModalBottomSheet(
                 useSafeArea: true,
@@ -84,20 +94,7 @@ class _AppState extends State<App> {
                 },
               );
             },
-            icon: const Icon(Icons.add),
           )
-        ],
-        title: const Text(
-          "Flutter Expense Tracker",
-          style: TextStyle(
-            fontSize: 18,
-          ),
-        ),
-      ),
-      body: Column(
-        children: [
-          Chart(expenses: registeredExpense),
-          Expanded(child: mainContent),
         ],
       ),
     );
