@@ -1,3 +1,4 @@
+import 'package:expensetracker/Service/Database_Service.dart';
 import 'package:expensetracker/Widget/Expenses_list.dart';
 import 'package:expensetracker/Widget/New_Expense.dart';
 import 'package:expensetracker/Widget/chart/chart.dart';
@@ -12,6 +13,8 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+  final DatabaseService _databaseService = DatabaseService.instance;
+
   final List<Expense> registeredExpense = [
     Expense(
       title: "Flutter",
