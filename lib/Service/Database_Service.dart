@@ -28,7 +28,7 @@ class DatabaseService {
         db.execute(
             'CREATE TABLE $_tableName(ID TEXT PRIMARY KEY,TITLE TEXT,AMOUNT REAL,DATE TEXT,CATEGORY TEXT)');
       },
-      version: 2,
+      version: 1,
     );
     return database;
   }
