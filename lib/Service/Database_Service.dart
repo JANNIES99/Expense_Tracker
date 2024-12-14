@@ -1,3 +1,6 @@
+import 'dart:collection';
+
+import 'package:expensetracker/models/expense.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -14,6 +17,8 @@ class DatabaseService {
     return _db!;
   }
 
+  final _tableName = "EXPENSE";
+
   Future<Database> getDataBase() async {
     final databaseDirPath = await getDatabasesPath();
     final databasePath = join(databaseDirPath, "Expense_db.db");
@@ -21,9 +26,28 @@ class DatabaseService {
       databasePath,
       onCreate: (db, version) {
         db.execute(
-            'CREATE TABLE EXPENSE(ID TEXT PRIMARY KEY,TITLE TEXT,AMOUNT REAL,DATE TEXT,CATEGORY TEXT)');
+            'CREATE TABLE $_tableName(ID TEXT PRIMARY KEY,TITLE TEXT,AMOUNT REAL,DATE TEXT,CATEGORY TEXT)');
       },
+      version: 1,
     );
     return database;
+  }
+
+  void addToExpense(Expense exp) async {
+    Map<String, Object> map = {
+      "ID": exp.id,
+      "TITLE": exp.title,
+      "AMOUNT": exp.amount,
+      "DATE": exp.formattedDate,
+      "CATEGORY": exp.category.name.toUpperCase(),
+    };
+    final db = await database;
+    db.insert(_tableName, map);
+  }
+
+  void getAllExpense() async {
+    final db = await database;
+    final data = await db.query(_tableName);
+    print(data);
   }
 }

@@ -33,6 +33,7 @@ class _AppState extends State<App> {
   void addExpense(Expense exp) {
     setState(() {
       registeredExpense.add(exp);
+      _databaseService.addToExpense(exp);
     });
   }
 
@@ -79,6 +80,14 @@ class _AppState extends State<App> {
             fontSize: 18,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              _databaseService.getAllExpense();
+            },
+            icon: const Icon(Icons.add),
+          )
+        ],
       ),
       body: Column(
         children: [

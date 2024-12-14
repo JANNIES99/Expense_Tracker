@@ -59,7 +59,7 @@ class Chart extends StatelessWidget {
             children: [
               for (final build in exBuild)
                 Text(
-                  build.totalExpense.toString(),
+                  build.totalExpense.toStringAsFixed(2),
                   style: const TextStyle(color: Colors.black),
                 ),
             ],
