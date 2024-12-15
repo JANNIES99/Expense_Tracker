@@ -1,8 +1,12 @@
 import 'dart:collection';
+import 'dart:ffi';
 
 import 'package:expensetracker/models/expense.dart';
+import 'package:intl/intl.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+
+DateFormat format = DateFormat('MM/dd/yyyy');
 
 class DatabaseService {
   Database? _db;
@@ -45,9 +49,32 @@ class DatabaseService {
     db.insert(_tableName, map);
   }
 
-  void getAllExpense() async {
+  Future<List<Expense>> getAllExpense() async {
+    final List<Expense> expList = [];
     final db = await database;
-    final data = await db.query(_tableName);
-    print(data);
+    final datas = await db.query(_tableName);
+    for (final data in datas) {
+      Category ctr = Category.food;
+      if (Category.food.name.toUpperCase() == data["CATEGORY"]) {
+        ctr = Category.food;
+      }
+      if (Category.leisure.name.toUpperCase() == data["CATEGORY"]) {
+        ctr = Category.leisure;
+      }
+      if (Category.travel.name.toUpperCase() == data["CATEGORY"]) {
+        ctr = Category.travel;
+      }
+      if (Category.work.name.toUpperCase() == data["CATEGORY"]) {
+        ctr = Category.work;
+      }
+      Expense exp = Expense.fromDatabase(
+          id: data["ID"] as String,
+          title: data["TITLE"] as String,
+          amount: data["AMOUNT"] as double,
+          date: format.parse(data["DATE"] as String),
+          category: ctr);
+      expList.add(exp);
+    }
+    return expList;
   }
 }

@@ -30,6 +30,13 @@ class _AppState extends State<App> {
     ),
   ];
 
+  void addAllExpense() async {
+    List<Expense> allExp = await _databaseService.getAllExpense();
+    for (final exp in allExp) {
+      registeredExpense.add(exp);
+    }
+  }
+
   void addExpense(Expense exp) {
     setState(() {
       registeredExpense.add(exp);
@@ -63,6 +70,7 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
+    addAllExpense();
     Widget mainContent = const Center(
       child: Text("No Expense found  Start adding some"),
     );

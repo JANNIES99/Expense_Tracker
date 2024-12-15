@@ -28,6 +28,13 @@ class Expense {
   final DateTime date;
   final Category category;
 
+  Expense.fromDatabase(
+      {required this.id,
+      required this.title,
+      required this.amount,
+      required this.date,
+      required this.category});
+
   String get formattedDate {
     return formatter.format(date);
   }
