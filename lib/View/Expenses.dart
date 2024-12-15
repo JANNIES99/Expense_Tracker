@@ -14,6 +14,11 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   final DatabaseService _databaseService = DatabaseService.instance;
+  @override
+  void initState() {
+    addAllExpense();
+    super.initState();
+  }
 
   final List<Expense> registeredExpense = [
     Expense(
@@ -66,12 +71,6 @@ class _AppState extends State<App> {
         ),
       ),
     );
-  }
-
-  @override
-  void initState() {
-    addAllExpense();
-    super.initState();
   }
 
   @override
