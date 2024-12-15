@@ -69,8 +69,13 @@ class _AppState extends State<App> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     addAllExpense();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     Widget mainContent = const Center(
       child: Text("No Expense found  Start adding some"),
     );
