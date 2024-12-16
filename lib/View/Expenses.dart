@@ -104,7 +104,6 @@ class _AppState extends State<App> {
             fontSize: 18,
           ),
         ),
-        actions: [],
       ),
       body: Column(
         children: [
