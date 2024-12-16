@@ -75,7 +75,7 @@ class DatabaseService {
     return expList;
   }
 
-  void removeToExpense(Expense exp) async {
+  Future<void> removeFromExpense(Expense exp) async {
     final db = await database;
     db.delete(_tableName, where: "ID = ?", whereArgs: [exp.id]);
   }

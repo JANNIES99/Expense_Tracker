@@ -38,38 +38,13 @@ class _AppState extends State<App> {
     });
   }
 
-  int partRemove(Expense exp) {
-    int flag = 0;
-    final eIndex = registeredExpense.indexOf(exp);
+  void removeExpense(Expense exp) {
+    _databaseService.removeFromExpense(exp);
     setState(
       () {
         registeredExpense.remove(exp);
       },
     );
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        duration: const Duration(seconds: 3),
-        content: const Text("Expense is deleted"),
-        action: SnackBarAction(
-          label: "Undo",
-          onPressed: () {
-            flag = 1;
-            setState(() {
-              registeredExpense.insert(eIndex, exp);
-            });
-          },
-        ),
-      ),
-    );
-    return flag;
-  }
-
-  void removeExpense(Expense exp) {
-    int flag = partRemove(exp);
-    if (flag == 1) {
-      _databaseService.removeToExpense(exp);
-    }
   }
 
   @override
