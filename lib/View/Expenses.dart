@@ -16,7 +16,7 @@ class _AppState extends State<App> {
   final DatabaseService _databaseService = DatabaseService.instance;
   @override
   void initState() {
-    setState(addAllExpense);
+    addAllExpense();
     super.initState();
   }
 
@@ -37,9 +37,11 @@ class _AppState extends State<App> {
 
   void addAllExpense() async {
     List<Expense> allExp = await _databaseService.getAllExpense();
-    for (final exp in allExp) {
-      registeredExpense.add(exp);
-    }
+    setState(() {
+      for (final exp in allExp) {
+        registeredExpense.add(exp);
+      }
+    });
   }
 
   void addExpense(Expense exp) {
@@ -49,7 +51,8 @@ class _AppState extends State<App> {
     });
   }
 
-  void removeExpense(Expense exp) {
+  int partRemove(Expense exp) {
+    int flag = 0;
     final eIndex = registeredExpense.indexOf(exp);
     setState(
       () {
@@ -64,6 +67,7 @@ class _AppState extends State<App> {
         action: SnackBarAction(
           label: "Undo",
           onPressed: () {
+            flag = 1;
             setState(() {
               registeredExpense.insert(eIndex, exp);
             });
@@ -71,6 +75,14 @@ class _AppState extends State<App> {
         ),
       ),
     );
+    return flag;
+  }
+
+  void removeExpense(Expense exp) {
+    int flag = partRemove(exp);
+    if (flag == 1) {
+      _databaseService.removeToExpense(exp);
+    }
   }
 
   @override
