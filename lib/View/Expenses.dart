@@ -16,7 +16,7 @@ class _AppState extends State<App> {
   final DatabaseService _databaseService = DatabaseService.instance;
   @override
   void initState() {
-    addAllExpense();
+    setState(addAllExpense);
     super.initState();
   }
 
