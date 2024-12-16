@@ -106,9 +106,7 @@ class _AppState extends State<App> {
         ),
         actions: [
           IconButton(
-            onPressed: () {
-              _databaseService.getAllExpense();
-            },
+            onPressed: () {},
             icon: const Icon(Icons.add),
           )
         ],
