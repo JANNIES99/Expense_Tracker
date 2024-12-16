@@ -20,20 +20,7 @@ class _AppState extends State<App> {
     super.initState();
   }
 
-  final List<Expense> registeredExpense = [
-    Expense(
-      title: "Flutter",
-      amount: 19.99,
-      date: DateTime.now(),
-      category: Category.work,
-    ),
-    Expense(
-      title: "Hotdog",
-      amount: 9.99,
-      date: DateTime.now(),
-      category: Category.food,
-    ),
-  ];
+  final List<Expense> registeredExpense = [];
 
   void addAllExpense() async {
     List<Expense> allExp = await _databaseService.getAllExpense();
