@@ -104,12 +104,7 @@ class _AppState extends State<App> {
             fontSize: 18,
           ),
         ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.add),
-          )
-        ],
+        actions: [],
       ),
       body: Column(
         children: [
