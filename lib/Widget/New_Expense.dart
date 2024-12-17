@@ -78,93 +78,91 @@ class _NewExpenseState extends State<NewExpense> {
 
   Widget build(BuildContext context) {
     final keyboardoverlay = MediaQuery.of(context).viewInsets.bottom;
-    return SafeArea(
-      child: SizedBox(
-        height: double.infinity,
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(16, 20, 16, keyboardoverlay + 16),
-            child: Column(
-              children: [
-                TextField(
-                  controller: _titleController,
-                  maxLength: 50,
-                  decoration: const InputDecoration(
-                    label: Text('Title'),
+    return SizedBox(
+      height: double.infinity,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(16, 20, 16, keyboardoverlay + 16),
+          child: Column(
+            children: [
+              TextField(
+                controller: _titleController,
+                maxLength: 50,
+                decoration: const InputDecoration(
+                  label: Text('Title'),
+                ),
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      keyboardType: TextInputType.number,
+                      controller: _amountController,
+                      decoration: const InputDecoration(
+                          label: Text("Amount"), prefixText: "\$ "),
+                    ),
                   ),
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        keyboardType: TextInputType.number,
-                        controller: _amountController,
-                        decoration: const InputDecoration(
-                            label: Text("Amount"), prefixText: "\$ "),
-                      ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(_selectedData == null
+                            ? "Select Date"
+                            : formatter.format(_selectedData!)),
+                        IconButton(
+                            onPressed: _openDatePicker,
+                            icon: const Icon(Icons.calendar_month))
+                      ],
                     ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(_selectedData == null
-                              ? "Select Date"
-                              : formatter.format(_selectedData!)),
-                          IconButton(
-                              onPressed: _openDatePicker,
-                              icon: const Icon(Icons.calendar_month))
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Row(
-                  children: [
-                    DropdownButton(
-                      value: _selectedCategory,
-                      items: Category.values
-                          .map(
-                            (item) => DropdownMenuItem(
-                              value: item,
-                              child: Text(
-                                item.name.toUpperCase(),
-                                style: Theme.of(context).textTheme.bodyMedium,
-                              ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                children: [
+                  DropdownButton(
+                    value: _selectedCategory,
+                    items: Category.values
+                        .map(
+                          (item) => DropdownMenuItem(
+                            value: item,
+                            child: Text(
+                              item.name.toUpperCase(),
+                              style: Theme.of(context).textTheme.bodyMedium,
                             ),
-                          )
-                          .toList(),
-                      onChanged: (value) {
-                        if (value == null) {
-                          return;
-                        }
-                        setState(
-                          () {
-                            _selectedCategory = value;
-                          },
-                        );
-                      },
-                    ),
-                    const Spacer(),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text('Cancel'),
-                    ),
-                    ElevatedButton(
-                      onPressed: _ckeckData,
-                      child: const Text('Save'),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (value) {
+                      if (value == null) {
+                        return;
+                      }
+                      setState(
+                        () {
+                          _selectedCategory = value;
+                        },
+                      );
+                    },
+                  ),
+                  const Spacer(),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text('Cancel'),
+                  ),
+                  ElevatedButton(
+                    onPressed: _ckeckData,
+                    child: const Text('Save'),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
