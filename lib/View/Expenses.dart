@@ -68,12 +68,19 @@ class _AppState extends State<App> {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          Chart(expenses: registeredExpense),
-          Expanded(child: mainContent),
-        ],
-      ),
+      body: width <= 600
+          ? Column(
+              children: [
+                Chart(expenses: registeredExpense),
+                Expanded(child: mainContent),
+              ],
+            )
+          : Row(
+              children: [
+                Expanded(child: Chart(expenses: registeredExpense)),
+                Expanded(child: mainContent),
+              ],
+            ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet(
