@@ -77,6 +77,10 @@ class _NewExpenseState extends State<NewExpense> {
   }
 
   Widget build(BuildContext context) {
+    final Color TextColor =
+        MediaQuery.of(context).platformBrightness == Brightness.light
+            ? Colors.black
+            : Colors.white;
     final keyboardoverlay = MediaQuery.of(context).viewInsets.bottom;
     return SizedBox(
       height: double.infinity,
@@ -86,6 +90,7 @@ class _NewExpenseState extends State<NewExpense> {
           child: Column(
             children: [
               TextField(
+                style: TextStyle(color: TextColor),
                 controller: _titleController,
                 maxLength: 50,
                 decoration: const InputDecoration(
