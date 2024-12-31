@@ -1,5 +1,6 @@
 import 'package:expensetracker/models/expense.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class NewExpense extends StatefulWidget {
   const NewExpense({required this.addExpense, super.key});
@@ -101,7 +102,9 @@ class _NewExpenseState extends State<NewExpense> {
                 children: [
                   Expanded(
                     child: TextField(
+                      style: TextStyle(color: TextColor),
                       keyboardType: TextInputType.number,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       controller: _amountController,
                       decoration: const InputDecoration(
                           label: Text("Amount"), prefixText: "\$ "),
